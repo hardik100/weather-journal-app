@@ -36,7 +36,7 @@ function performAction() {
    //chaining promises
    .then(function(data){
    console.log(data);
-   postData('/add', {temperature: data.temperature, date: newDate, userResponse: humanFeel});
+   postData('/add', {temperature: data.main.temp, date: newDate, userResponse: humanFeel});
    handleUI();
 });
 }
@@ -55,9 +55,9 @@ const handleUI = async() => {
     const request = await fetch ('/all');
     try {
      const newEntry = await request.json();
-     document.getElementById('date').innerHTML = newEntry[0].date;
-     document.getElementById('temp').innerHTML = newEntry[0].temperature;
-     document.getElementById('content').innerHTML = newEntry[0].userResponse;    
+     document.getElementById('date').innerHTML = newEntry.date;
+     document.getElementById('temp').innerHTML = newEntry.temperature;
+     document.getElementById('content').innerHTML = newEntry.userResponse;    
     }
     catch(error){
        console.log('error',error);
